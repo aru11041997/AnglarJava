@@ -1,0 +1,13 @@
+<nav class='navbar navbar-expand navbar-light bg-light shadow p-3 mb-5 bg-white rounded'>
+    <a class='navbar-brand'>{{title|uppercase}}</a>
+    <ul class='nav nav-pills' *ngIf='user.token'>
+      <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/home']" *ngIf='user.role==="Admin" || user.role==="User"'>Book List</a></li>
+      <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/addbook']" *ngIf='user.role==="Admin"'>Add Book</a></li>
+    </ul>
+    <ul class="navbar-nav ml-auto" *ngIf='user.token'>
+        <li>
+          <button class="btn btn-outline-secondary" (click)='logout()'>Logout</button>
+        </li>
+    </ul>
+  </nav>
+<router-outlet></router-outlet>

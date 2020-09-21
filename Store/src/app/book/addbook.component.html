@@ -1,0 +1,30 @@
+<div class='container'>
+    <div class='card shadow-lg p-3 mb-5 bg-white rounded'>
+        <div class='card-header shadow-sm p-3 mb-5 bg-white rounded'>
+            {{pageTitle}}
+        </div>
+
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+            <div class="form-group" >
+                <label for="title">Name</label>
+                <input id="title" name="title" class="form-control" [(ngModel)]="book.title" placeholder="Book Title" ngModel #titleField="ngModel" required
+                        [class.field-error]="form.submitted && titleField.invalid"/>
+                <div [hidden]="!form.submitted || titleField.valid" class="alert alert-danger">
+                    Enter a book name
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="gener">Gener</label>
+                <input id="gener" name="gener" class="form-control" [(ngModel)]="book.gener" placeholder="Book Gener" ngModel #generField="ngModel" required
+                        [class.field-error]="form.submitted && generField.invalid"/>
+                <div [hidden]="!form.submitted || generField.valid" class="alert alert-danger">
+                    Enter a book gener
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Add Book" />
+        </form>
+
+
+    </div>
+</div>

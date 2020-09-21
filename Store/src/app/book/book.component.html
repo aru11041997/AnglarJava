@@ -1,0 +1,45 @@
+<div class='container'>
+    <div class='card shadow-lg p-3 mb-5 bg-white rounded'>
+        <div class='card-header shadow-sm p-3 mb-5 bg-white rounded'>
+            {{title}}
+        </div>
+        <table class='table' *ngIf='bookList && bookList.length'>
+            <thead>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Gener
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                </tr>
+            </thead>
+            <tbody *ngFor='let book of bookList'>
+                <tr>
+                    <td *ngIf="book.id === editRowId"><input type="text" [(ngModel)]="book.title" /></td>
+                    <td *ngIf="book.id !== editRowId" >{{book.title|uppercase}}</td>
+                    <td *ngIf="book.id === editRowId"><input type="text" [(ngModel)]="book.gener" /></td>
+                    <td *ngIf="book.id !== editRowId">{{book.gener|uppercase}}</td>
+                    <td [hidden]="!(editRecord) || (currentRecord===0 || book.id !== currentRecord)">
+                        <button type="button" class="btn btn-outline-primary" title="Save Book" (click)="saveRecord(book)"> Save </button>
+                    </td>
+                    <td [hidden]="!(editRecord) || (currentRecord===0 || book.id !== currentRecord)">
+                        <button class="btn btn-outline-dark" title="Cancel" (click)="cancelEdit()" >Cancel</button>
+                    </td>
+                    <td [hidden]="(editRecord) && (currentRecord===0 || book.id === currentRecord)">
+                        <button type="button" class="btn btn-outline-dark" title="Edit Book" (click)="editBook(book.id)"> Edit </button>
+                    </td>
+                    <td [hidden]="(editRecord) && (currentRecord===0 || book.id === currentRecord)">
+                        <button class="btn btn-outline-danger" title="Delete Book" (click)="deleteBook(book.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

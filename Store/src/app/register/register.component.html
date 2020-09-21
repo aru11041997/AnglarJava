@@ -1,0 +1,42 @@
+<div class='container'>
+    <div class='card shadow-lg p-3 mb-5 bg-white rounded'>
+        <div class='card-header shadow-sm p-3 mb-5 bg-white rounded'>
+            {{pageTitle}}
+        </div>
+
+        <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+            <div class="form-group" >
+                <label for="username">Username</label>
+                <input id="username" name="username" class="form-control" [(ngModel)]="register.username" placeholder="Username" ngModel #usernameField="ngModel" required
+                        [class.field-error]="registerForm.submitted && usernameField.invalid"/>
+                <div [hidden]="!registerForm.submitted || usernameField.valid" class="alert alert-danger">
+                    Enter a username.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" name="password" class="form-control" [(ngModel)]="register.password" placeholder="Password" ngModel #passwordField="ngModel" required
+                        [class.field-error]="registerForm.submitted && passwordField.invalid"/>
+                <div [hidden]="!registerForm.submitted || passwordField.valid" class="alert alert-danger">
+                    Enter a password.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select id="role" class="form-control" name="role" [(ngModel)]="register.role" ngModel #roleField="ngModel" required>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>
+                <div [hidden]="!registerForm.submitted || roleField.valid" class="alert alert-danger">
+                    Select a role.
+                </div>
+            </div>
+
+            <input type="submit" class="btn btn-outline-primary button-spcae" value="Register" />
+            <button type="button" class="btn btn-outline-secondary button-spcae" [routerLink]="['/login']">Login</button>
+        </form>
+
+    </div>
+</div>
